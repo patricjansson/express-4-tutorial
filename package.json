@@ -1,0 +1,25 @@
+{
+  "name": "patricjansson",
+  "version": "0.0.0",
+  "description": "patricjansson.com",
+  "main": "app.js",
+  "private" : true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@heroku.com:patricjansson.git"
+  },
+  "keywords": [
+    "patricjansson"
+  ],
+  "author": "Patric Jansson (twitter.com/patricjansson)",
+  "license": "ISC",
+  "dependencies": {
+    "express": "~4.0.0",
+    "logfmt": ">0"
+  },
+  "engines": { "node": "0.10.x" }
+
+}
