@@ -4,7 +4,27 @@ doctype html
 html
   title Express 4 - Tutorial
   body
-    p Awsome, you made it!
+    h1 Awsome, you made it here!
 
-    //- the name comes from the data passed in the render functoin
-    P #{name}
+    p This is a simple readable and runnable tutorial for Node.js based web framework.
+    a(href="http://expressjs.com/") Express
+
+    //- the name comes from the data passed in the render functions.
+    P Enjoy! #{name}
+
+      ul
+        li
+          a(href="/text") Text
+        li
+          a(href="/html") HTML
+        li
+          a(href="/json") JSON
+        li
+          a(href="/profile/username") Redirect
+        li
+          form(action="/profile/patricjansson", method="POST")
+             button(type="submit") Post
+        li
+          a(href="/static/patricjansson.png") Image
+        li
+          a(href="/norrland") 404

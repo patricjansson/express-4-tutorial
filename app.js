@@ -113,11 +113,11 @@ app.get("/", function(req, res) {
 
 // Respone with a string
 app.get("/html", function(req, res) {
-  res.send("<!DOCTYPE html><html><title>String</title><body>HTLM String</body><html>");
+  res.send("<!DOCTYPE html><html><title>String</title><body><h1>HTLM String</h1></body><html>");
 });
 
 // Respone with a string
-app.get("/string", function(req, res) {
+app.get("/text", function(req, res) {
   res.set("Content-Type", "text/plain");
   res.send("Text string");
 });
