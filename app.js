@@ -1,7 +1,7 @@
 /**
- * Tutorial application for Exress 4 (expressjs.com)
+ * Tutorial application for Express 4 (expressjs.com)
  * This is a runnable node.js application that shows you the basics
- * in the web framework work Express.
+ * in the web framework Express.
  *
  * Author: @patricjansson
  *
@@ -9,30 +9,30 @@
  * Node.js installed. To start this node.js application run [node app.js]
  *
  * OPTIONAL:
- * http://nodemon.io/ - automaticly restarts your node server when a file is saved,
- * this speeds up your development.
+ * http://nodemon.io/ - automatically restarts your node server when a file is saved,
+ * which speeds up your development.
  *
  * Install Nodemon on your machine by running [npm install -g nodemon]
  *
  * BEFORE FIRST START
  * Before you can run this application you have to install all the modules this
- * application depends on. In our case Express, and the HTML template engeine Jade.
+ * application depends on. In our case Express, and the HTML template engine Jade.
  * The dependencies are specified in the file package.json.
- * You download and install the modules using npm, run this command [npm install] once.
- * Dependencies are installed in the catalog node_modules.
+ * You download and install the modules using npm by running the command [npm install] once.
+ * Dependencies are installed in the catalog /node_modules.
  *
- * START APPLICATOIN:
- * If you use Nodemon.io start this app by [nodemon app.js], otherwise start as a normal
- * Node.js app by running [node app.js] from your terminal.
+ * START APPLICATION:
+ * If you use Nodemon.io start this app with the command [nodemon app.js].
+ * Otherwise start as a normal Node.js app by running [node app.js] from your terminal.
  */
 
-/****************** include modules (aka librarys)  ******************
+/****************** include modules (aka libraries)  ******************
  *
- * A module is external librarys that are installed via the npm package manager.
+ * A module is an external library that is installed via the npm package manager.
  * Npm reads the file package.json in the root of the project, and installs any
  * dependencies specified in that file.
  *
- * Note: Any module you want to use a require("a-module-i-need") has to be present
+ * Note: Any module you want to use as a require("a-module-i-need") has to be present
  * as a dependency in package.json and installed using [npm install] before this
  * application can run.
  */
@@ -41,15 +41,15 @@ var express = require("express");
 /****************** Configuration ******************/
 var app = express();
 
-// Select the template mechanism you wish to use. In this case its Jade http://jade-lang.com
+// Select the template mechanism you wish to use. In this case its Jade (http://jade-lang.com).
 // The templates are located by default under /views/*.jade
 app.set("view engine", "jade");
 
-// "case sensitive routing" tells Express whether /my-path is the same as /My-PaTH/
-// This is default set to false, but for SEO purposes, creating one cannical url is better.
+// "case sensitive routing" tells Express whether /my-path is the same as /My-PaTH
+// This is default set to false, but for SEO purposes, creating a canonical url is better.
 app.set ("case sensitive routing", true);
 
-// utility function, see if a specific port has been default or default to port 3000.
+// utility function, see if a specific port has been selected or if to use default port 3000.
 app.getPort = function () {
   return Number(process.env.PORT || 3000);
 }
@@ -68,17 +68,16 @@ app.getAuthorAsJson = function () {
 
 /****************** Request stack ******************
  *
- * Express handles routing by a defining a rules based stack that all requests passes through.
- * Each layer in the stack is defined by a funtion. The request is passed down the chain and until it
+ * Express handles routing by a defining a rule based stack that all requests passes through.
+ * Each layer in the stack is defined by a function. The request is passed down the chain and until it
  * matches a route. If that function matching the route returns a response the chain is exited.
  * Otherwise the request passes down to the next layer in the stack.
- *
  */
 
 // -- Middleware --
 // Middleware is stuff that filters all requests. Middleware ends by passing the request
 // to the next function in line by calling next();
-// BTW: writing this function bellow like app.use("/*", function(req, res, next) whould
+// BTW: writing the function below like app.use("/*", function(req, res, next) { .. }) would
 // have given the same result.
 app.use(function(req, res, next) {
   app.log(req.method + ": " + req.url + " ");
@@ -90,7 +89,7 @@ app.all("/secure/*", function(req, res, next) {
 });
 
 // -- Pre-method url parsing
-// Express has a nice feture that much like middleware
+// Express has a nice feature that, much like middleware,
 // can extract data from the url before the actual method handle function
 // is invoked. For example it would be nice to read the correct user from
 // a database before invoking the routing.
@@ -105,31 +104,31 @@ app.param("username", function(req, res, next, id){
 });
 
 // -- Methods --
-// Respone with a rendered template
+// Respond with a rendered template
 app.get("/", function(req, res) {
   res.render("index", app.getAuthorAsJson());
 });
 
-// Respone with a string
+// Respond with a HTML string
 app.get("/html", function(req, res) {
   res.send("<!DOCTYPE html><html><title>String</title><body><h1>HTLM String</h1></body><html>");
 });
 
-// Respone with a string
+// Respond with a text/plan string
 app.get("/text", function(req, res) {
   res.set("Content-Type", "text/plain");
   res.send("Text string");
 });
 
-// Respone with json
+// Respond with json
 app.get("/json", function(req, res) {
   res.json(app.getAuthorAsJson());
 });
 
 // This is a POST method with a dynamic url path.
-// The :username can be accessed directly usering req.params.username
-// but in this case its already parsed by the middleware-like function
-// matching "username", and put in the resquest object.
+// The :username can be accessed directly using req.params.username,
+// but in this case it's already parsed by the middleware-like function
+// matching "username", and put in the request object.
 //
 app.post("/profile/:username", function(req, res){
   var html = "This is a " + req.method + " for '" + req.user.twitter + "'<br/>";
@@ -143,7 +142,7 @@ app.get("/profile/:username", function(req, res){
   res.redirect(301, "/profile");
 });
 
-// This is a GET method with a dynamic url path.
+// This is a GET method with a static url path.
 app.get("/profile", function(req, res){
   res.render("username-form");
 });
@@ -166,7 +165,7 @@ app.use(function(req, res){
 
 /****************** Start  ******************
  *
- * Start the application and listen for incomming requests.
+ * Start the application and listen for incoming requests.
  * If your app needs SSL start it by creating a node server directly.
  * var https = require("https"); https.createServer(app).listen(443);
  */
