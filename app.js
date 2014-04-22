@@ -15,8 +15,8 @@
  * Install Nodemon on your machine by running [npm install -g nodemon]
  *
  * BEFORE FIRST START
- * Before you can run this application you have to install all the modeules this
- * application depends on. In our case Express and the HTML template engeine Jade.
+ * Before you can run this application you have to install all the modules this
+ * application depends on. In our case Express, and the HTML template engeine Jade.
  * The dependencies are specified in the file package.json.
  * You download and install the modules using npm, run this command [npm install] once.
  * Dependencies are installed in the catalog node_modules.
