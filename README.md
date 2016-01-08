@@ -9,6 +9,7 @@ Patric Jansson
 And heres the <a href="http://patricjansson.herokuapp.com/">demo site</a>
 
 ## Docker fan?
-docker pull patricjansson/express-4-tutorial
-
+```
+docker pull patricjansson/express-4-tutorial:v0.1
 docker run -p 80:3000 patricjansson/express-4-tutorial:v0.1
+```
